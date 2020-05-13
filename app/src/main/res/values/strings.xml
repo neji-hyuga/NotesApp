@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="text_add_note">add a note</string>
+</resources>
