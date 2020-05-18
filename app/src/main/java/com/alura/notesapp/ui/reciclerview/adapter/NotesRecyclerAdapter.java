@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alura.notesapp.R;
 import com.alura.notesapp.model.Notes;
+import com.alura.notesapp.ui.reciclerview.adapter.listener.onItemClickListener;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
 
     final private List<Notes> notesList;
     final private Context context;
+    private onItemClickListener onItemClickListener;
 
     public NotesRecyclerAdapter(Context context, List<Notes> notes) {
         this.context = context;
@@ -43,18 +45,30 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         return notesList.size();
     }
 
+    public void setOnItemClickListener(com.alura.notesapp.ui.reciclerview.adapter.listener.onItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     class NotesViewHolder extends RecyclerView.ViewHolder { // inner class to creates view holder
 
         private final TextView titleTextView;
         private final TextView descriptionTextView;
+        private Notes note;
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.item_note_title_id);
             descriptionTextView = itemView.findViewById(R.id.item_note_description);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onItemClick(note);
+                }
+            });
         }
 
         public void attachesNote(Notes note) {
+            this.note = note;
             titleTextView.setText(note.getTitle());
             descriptionTextView.setText(note.getDescription());
         }

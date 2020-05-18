@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +22,18 @@ public class CreatesNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creates_note);
+
+        Intent receivedData = getIntent();
+        if (receivedData.hasExtra(NOTE_KEY)) {
+            Notes receivedNote = (Notes) receivedData
+                    .getSerializableExtra(NOTE_KEY);
+            TextView titleTextView = findViewById(R.id.creates_activity_edit_text_note_title_id);
+            titleTextView.setText(receivedNote.getTitle());
+            TextView descriptionTextView = findViewById(R.id.creates_activity_edit_text_note_description_id);
+            descriptionTextView.setText(receivedNote.getDescription());
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
