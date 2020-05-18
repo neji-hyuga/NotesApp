@@ -14,41 +14,54 @@ import com.alura.notesapp.model.Notes;
 
 import java.util.List;
 
-public class NotesRecyclerAdapter extends RecyclerView.Adapter {
+public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdapter.NotesViewHolder> {
 
-    private List<Notes> notes;
-    private Context context;
+    final private List<Notes> notesList;
+    final private Context context;
 
-    public NotesRecyclerAdapter(Context context,List<Notes> notes){
+    public NotesRecyclerAdapter(Context context, List<Notes> notes) {
         this.context = context;
-        this.notes = notes;
+        this.notesList = notes;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View createdView = LayoutInflater.from(context).inflate(R.layout.item_note, parent, false);
+    public NotesRecyclerAdapter.NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View createdView = LayoutInflater.from(context)
+                .inflate(R.layout.item_note, parent, false);
         return new NotesViewHolder(createdView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) { // creates views
-        Notes note = notes.get(i);
-        TextView titleTextView = holder.itemView.findViewById(R.id.item_note_title_id);
-        titleTextView.setText(note.getTitle());
-        TextView descriptionTextView = holder.itemView.findViewById(R.id.item_note_description);
-        descriptionTextView.setText(note.getDescription());
+    public void onBindViewHolder(@NonNull NotesRecyclerAdapter.NotesViewHolder holder, int i) { // creates views
+        Notes note = notesList.get(i);
+        holder.attachesNote(note);
     }
 
     @Override
     public int getItemCount() {
-        return notes.size();
+        return notesList.size();
     }
 
-    class NotesViewHolder extends RecyclerView.ViewHolder{ // inner class to creates view holder
+    class NotesViewHolder extends RecyclerView.ViewHolder { // inner class to creates view holder
+
+        private final TextView titleTextView;
+        private final TextView descriptionTextView;
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
+            titleTextView = itemView.findViewById(R.id.item_note_title_id);
+            descriptionTextView = itemView.findViewById(R.id.item_note_description);
         }
+
+        public void attachesNote(Notes note) {
+            titleTextView.setText(note.getTitle());
+            descriptionTextView.setText(note.getDescription());
+        }
+    }
+
+    public void addNote(Notes note) {
+        notesList.add(note);
+        notifyDataSetChanged();
     }
 }

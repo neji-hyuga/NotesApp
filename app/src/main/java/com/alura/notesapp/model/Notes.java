@@ -1,6 +1,8 @@
 package com.alura.notesapp.model;
 
-public class Notes {
+import java.io.Serializable;
+
+public class Notes implements Serializable {
 
     private final String title;
     private final String description;
