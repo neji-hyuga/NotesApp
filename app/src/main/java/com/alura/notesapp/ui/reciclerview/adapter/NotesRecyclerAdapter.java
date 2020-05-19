@@ -13,6 +13,7 @@ import com.alura.notesapp.R;
 import com.alura.notesapp.model.Notes;
 import com.alura.notesapp.ui.reciclerview.adapter.listener.onItemClickListener;
 
+import java.util.Collections;
 import java.util.List;
 
 public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdapter.NotesViewHolder> {
@@ -49,6 +50,21 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
         this.onItemClickListener = onItemClickListener;
     }
 
+    public void changeNote(int i, Notes note) {
+        notesList.set(i, note);
+        notifyItemChanged(i);
+    }
+
+    public void delete(int i) {
+        notesList.remove(i);
+        notifyItemRemoved(i); // smooth effect on delete
+    }
+
+    public void changePosition(int startPosition, int finalPosition) {
+        Collections.swap(notesList, startPosition, finalPosition);
+        notifyItemMoved(startPosition, finalPosition); // smooth effect and allow a item change position with any another item in the list
+    }
+
     class NotesViewHolder extends RecyclerView.ViewHolder { // inner class to creates view holder
 
         private final TextView titleTextView;
@@ -57,12 +73,13 @@ public class NotesRecyclerAdapter extends RecyclerView.Adapter<NotesRecyclerAdap
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
+
             titleTextView = itemView.findViewById(R.id.item_note_title_id);
             descriptionTextView = itemView.findViewById(R.id.item_note_description);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.onItemClick(note);
+                    onItemClickListener.onItemClick(note, getAdapterPosition());
                 }
             });
         }

@@ -4,6 +4,6 @@ import com.alura.notesapp.model.Notes;
 
 public interface onItemClickListener {
 
-    void onItemClick(Notes note);
+    void onItemClick(Notes note, int i);
 
 }
