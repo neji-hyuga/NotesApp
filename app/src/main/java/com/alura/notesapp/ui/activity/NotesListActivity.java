@@ -28,7 +28,7 @@ import static com.alura.notesapp.ui.activity.Constants.REQUEST_CODE_MODIFY_NOTE;
 
 public class NotesListActivity extends AppCompatActivity {
 
-    public static final String TITLE_APPBAR = "notes : )";
+    public static final String TITLE_APPBAR = "notes :)";
     private NotesRecyclerAdapter adapter;
 
     @Override

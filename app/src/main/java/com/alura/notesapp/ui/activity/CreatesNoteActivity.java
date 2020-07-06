@@ -20,8 +20,8 @@ import static com.alura.notesapp.ui.activity.Constants.POSITION;
 
 public class CreatesNoteActivity extends AppCompatActivity {
 
-    public static final String APPBAR_TITLE = "add a new note : D";
-    public static final String APPBAR_TITLE_EDIT_NOTE = "edit note ; )";
+    public static final String APPBAR_TITLE = "add a new note :D";
+    public static final String APPBAR_TITLE_EDIT_NOTE = "edit note ;)";
     private int receivedPosition = INVALID_POSITION;
     private TextView titleTextView;
     private TextView descriptionTextView;

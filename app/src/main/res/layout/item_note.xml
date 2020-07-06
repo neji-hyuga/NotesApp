@@ -5,7 +5,9 @@
     android:id="@+id/item_note_card_view_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,10 +17,12 @@
             android:id="@+id/item_note_title_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:maxLines="2"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="title"/>
@@ -27,15 +31,15 @@
             android:id="@+id/item_note_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:maxLines="6"
+            android:textColor="@android:color/darker_gray"
             android:textSize="16sp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/item_note_title_id"
             app:layout_constraintTop_toBottomOf="@id/item_note_title_id"
-            tools:text="all your text goes here"/>
+            tools:text="all your text goes here" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
